@@ -341,7 +341,7 @@ urllib3.disable_warnings(
     urllib3.exceptions.InsecureRequestWarning
 )
 
-@st.cache_data(ttl=60)
+@st.cache_data(ttl=1800)
 def load_data():
 
     try:
