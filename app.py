@@ -1,11 +1,11 @@
 import requests
+import urllib3
 import pandas as pd
 import streamlit as st
 import folium
 import plotly.express as px
 from streamlit_folium import st_folium
 from folium.plugins import MarkerCluster, MiniMap, Fullscreen
-
 
 # =========================
 # PAGE CONFIG
@@ -257,18 +257,36 @@ style="text-decoration:none;">
 # =========================
 # LOAD DATA
 # =========================
+urllib3.disable_warnings(
+    urllib3.exceptions.InsecureRequestWarning
+)
+
 @st.cache_data(ttl=60)
 def load_data():
 
-    response = requests.get(API_URL)
-    data = response.json()
+    try:
+        response = requests.get(
+            API_URL,
+            timeout=15,
+            verify=False
+        )
 
-    if isinstance(data, dict):
-        records = data.get("records", [])
-    else:
-        records = data
+        response.raise_for_status()
 
-    return pd.DataFrame(records)
+        data = response.json()
+
+        if isinstance(data, dict):
+            records = data.get("records", [])
+        else:
+            records = data
+
+        return pd.DataFrame(records)
+
+    except requests.exceptions.RequestException as e:
+
+        st.error(f"API 載入失敗: {e}")
+
+        return pd.DataFrame()
 
 # refresh button
 if st.sidebar.button("🔄 重新整理資料", use_container_width=True):
