@@ -14,7 +14,7 @@ st.set_page_config(
     page_title="台灣空氣品質監測儀表板",
     page_icon="🌿",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="expanded"
 )
 
 # =========================
@@ -28,6 +28,86 @@ API_URL = f"https://data.moenv.gov.tw/api/v2/aqx_p_432?language=zh&api_key={API_
 # =========================
 st.markdown("""
 <style>
+/* FORCE LIGHT MODE STYLE */
+html, body, [class*="css"] {
+    color: #172033 !important;
+}
+
+/* App background */
+.stApp {
+    background: linear-gradient(
+        180deg,
+        #eef7f6 0%,
+        #f6f8fb 45%,
+        #ffffff 100%
+    ) !important;
+
+    color: #172033 !important;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background: #ffffff !important;
+    color: #172033 !important;
+    border-right: 1px solid #e2e8f0 !important;
+}
+
+/* Sidebar text */
+section[data-testid="stSidebar"] * {
+    color: #172033 !important;
+}
+
+/* Input */
+.stTextInput input {
+    background: white !important;
+    color: #172033 !important;
+    border: 2px solid #dbe4f0 !important;
+}
+
+/* Placeholder */
+.stTextInput input::placeholder {
+    color: #94a3b8 !important;
+}
+
+/* Selectbox */
+div[data-baseweb="select"] > div {
+    background: white !important;
+    color: #172033 !important;
+}
+
+/* Selectbox text */
+div[data-baseweb="select"] span,
+div[data-baseweb="select"] div {
+    color: #172033 !important;
+}
+
+/* Slider */
+.stSlider * {
+    color: #172033 !important;
+}
+
+/* Radio */
+.stRadio * {
+    color: #172033 !important;
+}
+
+/* Metric cards */
+.metric-card {
+    background: white !important;
+    color: #172033 !important;
+}
+
+/* Dataframe */
+[data-testid="stDataFrame"] {
+    background: white !important;
+    color: #172033 !important;
+}
+
+/* Markdown */
+.stMarkdown,
+.stMarkdown * {
+    color: #172033 !important;
+}
 
 :root {
     --primary: #0f766e;
