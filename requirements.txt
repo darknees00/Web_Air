@@ -1,0 +1,7 @@
+streamlit
+pandas
+requests
+plotly
+pandas
+folium
+streamlit_folium
